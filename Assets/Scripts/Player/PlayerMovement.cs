@@ -58,11 +58,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (currentVelocity.x > 0)
         {
-            gameObject.transform.localScale = new Vector3(1, 1, 1);
+            gameObject.transform.localScale = new Vector3(1, gameObject.transform.localScale.y, 1);
         }
         else if (currentVelocity.x < 0)
         {
-            gameObject.transform.localScale = new Vector3(-1, 1, 1);
+            gameObject.transform.localScale = new Vector3(-1, gameObject.transform.localScale.y, 1);
         }
         
     }
@@ -162,12 +162,14 @@ public class PlayerMovement : MonoBehaviour
                 gravityIsDown = true;
                 canFlipGravity = false;
                 currentVelocity.y = -maxFallSpeed;
+                gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, 1, gameObject.transform.localScale.z);
             }
             else if (direction > 0)
             {
                 gravityIsDown = false;
                 canFlipGravity = false;
                 currentVelocity.y = maxFallSpeed;
+                gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, -1, gameObject.transform.localScale.z);
 
             }
         }
