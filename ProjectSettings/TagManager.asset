@@ -8,6 +8,7 @@ TagManager:
   - Spell
   - Enemy
   - Boss Chamber
+  - Destroyer
   layers:
   - Default
   - TransparentFX

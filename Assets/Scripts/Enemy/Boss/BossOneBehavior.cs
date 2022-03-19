@@ -16,9 +16,7 @@ public class BossOneBehavior : MonoBehaviour
     public float maxTimeBeforeJump;
     public float minTimeBeforeJump;
     private bool canJump = true;
-    public float maxTimeBeforeStomp;
-    public float minTimeBeforeStomp;
-    private bool canStomp = true;
+    public uint minRocksPerStomp;
     public uint maxRocksPerStomp;
     private bool isActive = false;
 
@@ -26,6 +24,7 @@ public class BossOneBehavior : MonoBehaviour
 
     [Header("Spawned GameObjects")]
     public GameObject boulder;
+    public GameObject spawnedRockArea;
 
     [Header("Collider")]
     private BoxCollider2D boxCollider;
@@ -50,11 +49,6 @@ public class BossOneBehavior : MonoBehaviour
             Jump();
         }
 
-        if (isGrounded && canStomp)
-        {
-            Stomp();
-        }
-
         velocity.y -= gravity * Time.deltaTime;
 
 
@@ -73,21 +67,22 @@ public class BossOneBehavior : MonoBehaviour
 
     private void Stomp()
     {
-        StartCoroutine(StompCooldown());
-    }
+        int rocksToSpawn = (int)Mathf.Clamp(Random.value * maxRocksPerStomp, minRocksPerStomp, maxRocksPerStomp);
 
-    private IEnumerator StompCooldown()
-    {
-        canStomp = false;
+        BoxCollider2D areaCollider = spawnedRockArea.GetComponent<BoxCollider2D>();
+        Vector2 size = areaCollider.size / 2;
+        Vector2 minValues = new Vector2(spawnedRockArea.transform.position.x, spawnedRockArea.transform.position.y) - size;
+        Vector2 maxValues = new Vector2(spawnedRockArea.transform.position.x, spawnedRockArea.transform.position.y) + size;
 
-        float stompCooldownTime = Random.value * maxTimeBeforeStomp;
-        if (stompCooldownTime < minTimeBeforeStomp)
+        for (int i = 0; i < rocksToSpawn; i++)
         {
-            stompCooldownTime = minTimeBeforeStomp;
-        }
+            GameObject spawnedBoulder = Instantiate(boulder);
 
-        yield return new WaitForSeconds(stompCooldownTime);
-        canStomp = true;
+            Vector2 boulderPos = new Vector2(Random.Range(minValues.x, maxValues.x), Random.Range(minValues.y, maxValues.y));
+
+            spawnedBoulder.transform.position = boulderPos;
+            
+        }
     }
 
     private IEnumerator JumpCooldown()
@@ -115,6 +110,10 @@ public class BossOneBehavior : MonoBehaviour
 
             if (colliderDistance.pointA.y > colliderDistance.pointB.y)
             {
+                if (!isGrounded)
+                {
+                    Stomp();
+                }
                 isGrounded = true;
                 velocity = Vector2.zero;
             }

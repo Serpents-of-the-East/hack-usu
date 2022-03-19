@@ -44,9 +44,12 @@ public class PlayerMovement : MonoBehaviour
     [Header("Delegate Functions")]
     public CollisionEvent onCollisionFunctions;
 
+    private Animator animator;
+
     private void Awake()
     {
         capsuleCollider = GetComponent<CapsuleCollider2D>();
+        animator = GetComponent<Animator>();
         currentJumps = maxJumps;
     }
 
@@ -109,6 +112,8 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        animator.SetFloat("Horizontal", Mathf.Abs(currentVelocity.x));
+
         transform.Translate(currentVelocity * Time.deltaTime);
     }
 
@@ -124,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
 
             ColliderDistance2D colliderDistance = hit.Distance(capsuleCollider);
 
-            if (colliderDistance.isOverlapped && !hit.CompareTag("Boss Chamber"))
+            if (colliderDistance.isOverlapped && !hit.CompareTag("Boss Chamber") && !hit.CompareTag("Enemy"))
             {
                 transform.Translate(colliderDistance.pointA - colliderDistance.pointB);
             }
