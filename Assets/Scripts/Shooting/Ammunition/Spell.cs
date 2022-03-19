@@ -39,7 +39,10 @@ public class Spell : MonoBehaviour
                 if (gameObject.tag == "Slow")
                 {
                     WalkingEnemy enemy = other.GetComponent<WalkingEnemy>();
-                    enemy.speedMod = speedReductionPercentage;
+                    if (enemy != null)
+                    {
+                        enemy.speedMod = speedReductionPercentage;
+                    }
                 }
                 health.TakeDamage(damage);
                 

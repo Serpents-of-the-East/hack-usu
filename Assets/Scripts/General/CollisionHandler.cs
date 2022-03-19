@@ -93,7 +93,6 @@ public class CollisionHandler : MonoBehaviour
             {
                 continue;
             }
-
             onCollisionFunctions.Invoke(hit.gameObject);
             onCollisionAdvancedFunctions.Invoke(hit);
         }
