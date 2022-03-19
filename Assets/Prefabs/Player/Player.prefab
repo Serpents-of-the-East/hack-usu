@@ -123,6 +123,7 @@ MonoBehaviour:
   timePerJump: 2
   maxJumpSpeed: 6
   maxJumps: 2
+  smokeEffect: {fileID: 2339269150336054531, guid: 16670df784a44824b92bc018c300e927, type: 3}
   gravity: 9.81
   maxFallSpeed: 20
   onCollisionFunctions:
@@ -245,7 +246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireBall: {fileID: 1307530766862259620, guid: f715bc4e31683664f9efc85ae6d94948, type: 3}
   iceBolt: {fileID: 5511144339969884637, guid: 643dc8698931e44408e58b5df90a8afd, type: 3}
-  roundsPerMinute: 30
+  roundsPerMinute: 120
   aimCursor: {fileID: 0}
-  aimCursorDistance: 2
+  aimCursorDistance: 3
   deadzone: 0.1
