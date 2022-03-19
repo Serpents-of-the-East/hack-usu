@@ -10,6 +10,7 @@ TagManager:
   - Boss Chamber
   - Destroyer
   - Slow
+  - Serpent
   layers:
   - Default
   - TransparentFX

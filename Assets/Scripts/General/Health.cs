@@ -52,6 +52,13 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameObject.GetComponent<serpentSegment>() != null && health <= 0)
+        {
+            health += 1;
+            onDeath.Invoke();
+        }
+
+
 
         if (health <= 0 && !deathHandled)
         {
