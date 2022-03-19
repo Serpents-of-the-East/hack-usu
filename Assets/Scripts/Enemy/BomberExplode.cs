@@ -19,7 +19,12 @@ public class BomberExplode : MonoBehaviour
     {
         if (!other.CompareTag("Enemy"))
         {
+            if (other.CompareTag("Slow") || other.CompareTag("Spell"))
+            {
+                Destroy(other.gameObject);
+            }
             Explode();
+            
         }
     }
 
