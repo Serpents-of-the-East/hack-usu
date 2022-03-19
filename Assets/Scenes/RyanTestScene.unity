@@ -146,6 +146,22 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1254938969}
+    - target: {fileID: 1820450011, guid: b659d15412a9fc5459626ee555e4d5f4, type: 3}
+      propertyPath: sightRange
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1820450011, guid: b659d15412a9fc5459626ee555e4d5f4, type: 3}
+      propertyPath: acceleration.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1820450011, guid: b659d15412a9fc5459626ee555e4d5f4, type: 3}
+      propertyPath: acceleration.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1820450011, guid: b659d15412a9fc5459626ee555e4d5f4, type: 3}
+      propertyPath: accelerationConstant
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1820450014, guid: b659d15412a9fc5459626ee555e4d5f4, type: 3}
       propertyPath: animator
       value: 
@@ -412,7 +428,6 @@ MonoBehaviour:
   maxJumps: 2
   gravity: 12
   maxFallSpeed: 14
-  debugMode: 0
   onCollisionFunctions:
     m_PersistentCalls:
       m_Calls: []

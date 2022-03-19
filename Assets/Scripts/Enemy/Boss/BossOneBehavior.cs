@@ -4,6 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Health))]
 [RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(AudioSource))]
 public class BossOneBehavior : MonoBehaviour
 {
     [Header("Movement")]
@@ -25,15 +26,21 @@ public class BossOneBehavior : MonoBehaviour
     [Header("Spawned GameObjects")]
     public GameObject boulder;
     public GameObject spawnedRockArea;
+    public ParticleSystem smokeEffect;
 
     [Header("Collider")]
     private BoxCollider2D boxCollider;
+
+    [Header("Sound")]
+    public AudioClip groundPound;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         health = GetComponent<Health>();
         boxCollider = GetComponent<BoxCollider2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -51,7 +58,7 @@ public class BossOneBehavior : MonoBehaviour
 
         velocity.y -= gravity * Time.deltaTime;
 
-        if (health.health < health.maxHealth / 2)
+        if (health.health < health.maxHealth / 2 * 3)
         {
             maxTimeBeforeJump /= 2;
             minTimeBeforeJump /= 2;
@@ -72,6 +79,7 @@ public class BossOneBehavior : MonoBehaviour
 
     private void Stomp()
     {
+        audioSource.PlayOneShot(groundPound);
         int rocksToSpawn = (int)Mathf.Clamp(Random.value * maxRocksPerStomp, minRocksPerStomp, maxRocksPerStomp);
 
         BoxCollider2D areaCollider = spawnedRockArea.GetComponent<BoxCollider2D>();
@@ -118,6 +126,9 @@ public class BossOneBehavior : MonoBehaviour
                 if (!isGrounded)
                 {
                     Stomp();
+                    ParticleSystem obj = Instantiate(smokeEffect);
+                    obj.transform.position = collider.ClosestPoint(transform.position);
+                    obj.transform.localScale *= 2;
                 }
                 isGrounded = true;
                 velocity = Vector2.zero;
