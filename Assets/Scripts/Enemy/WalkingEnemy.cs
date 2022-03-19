@@ -33,12 +33,12 @@ public class WalkingEnemy : MonoBehaviour
         
     
 
-    private void Update()
+    protected virtual void Update()
     {
         transform.Translate(-speed * Time.deltaTime * speedMod, 0, 0);
         if (speedMod != 1f)
         {
-            StartCoroutine(SpeedReductionTimer());
+            StartCoroutine(SpeedReductionTimer()); 
         }
     }
 

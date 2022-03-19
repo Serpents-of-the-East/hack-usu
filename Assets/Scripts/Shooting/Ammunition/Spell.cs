@@ -61,6 +61,16 @@ public class Spell : MonoBehaviour
             
             Destroy(gameObject);
         }
+        else if (other.CompareTag("Player") && !isPlayerSpell)
+        {
+            
+            Health health = other.GetComponent<Health>();
+            if (health != null)
+            {
+                health.TakeDamage(damage);
+            }
+
+        }
     }
 
     IEnumerator SelfDestruct()
