@@ -80,6 +80,7 @@ MonoBehaviour:
   minTimeBeforeJump: 3
   minRocksPerStomp: 4
   maxRocksPerStomp: 8
+  damageDealt: 5
   boulder: {fileID: 1954046488754215783, guid: c1eb3dbeb6576484391e7feff0a53c00, type: 3}
   spawnedRockArea: {fileID: 0}
   smokeEffect: {fileID: 2339269150336054531, guid: 16670df784a44824b92bc018c300e927, type: 3}
@@ -98,7 +99,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onCollisionFunctions:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7980534960688580867}
+        m_TargetAssemblyTypeName: BossOneBehavior, Assembly-CSharp
+        m_MethodName: OnDamagePlayer
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onCollisionAdvancedFunctions:
     m_PersistentCalls:
       m_Calls:

@@ -21,6 +21,7 @@ public class BossOneBehavior : MonoBehaviour
     public uint minRocksPerStomp;
     public uint maxRocksPerStomp;
     private bool isActive = false;
+    public int damageDealt;
 
     private Health health;
 
@@ -149,6 +150,18 @@ public class BossOneBehavior : MonoBehaviour
         if (other.CompareTag("Boss Chamber"))
         {
             isActive = true;
+        }
+    }
+
+    public void OnDamagePlayer(GameObject other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Health health = GetComponent<Health>();
+            if (health != null)
+            {
+                health.TakeDamage(damageDealt);
+            }
         }
     }
 
