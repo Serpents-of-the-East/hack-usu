@@ -174,3 +174,4 @@ MonoBehaviour:
   maxDistanceAway: 10
   shotCooldown: 1
   attackPrefab: {fileID: 4009361934058806849, guid: f44b51a5f08cab0419bf880d76fc3584, type: 3}
+  detectionRange: 20
