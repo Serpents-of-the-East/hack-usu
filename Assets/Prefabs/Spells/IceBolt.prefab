@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  speed: 20
+  speed: 40
   isPlayerSpell: 1
-  lifeTime: 0.5
+  lifeTime: 3
   speedReductionPercentage: 0.5
