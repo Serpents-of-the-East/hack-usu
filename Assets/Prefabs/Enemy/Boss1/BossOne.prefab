@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7980534960688580867}
   - component: {fileID: 7980534960688580866}
   - component: {fileID: 7980534960688580869}
+  - component: {fileID: 6677871857781718977}
   m_Layer: 0
   m_Name: BossOne
   m_TagString: Enemy
@@ -82,6 +83,7 @@ MonoBehaviour:
   boulder: {fileID: 1954046488754215783, guid: c1eb3dbeb6576484391e7feff0a53c00, type: 3}
   spawnedRockArea: {fileID: 0}
   smokeEffect: {fileID: 2339269150336054531, guid: 16670df784a44824b92bc018c300e927, type: 3}
+  groundPound: {fileID: 0}
 --- !u!114 &7980534960688580866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,6 +144,102 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   immunityTime: 1
+--- !u!82 &6677871857781718977
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7980534960688580868}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7980534961155423036
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,6 +251,7 @@ GameObject:
   - component: {fileID: 7980534961155423037}
   - component: {fileID: 7980534961155423034}
   - component: {fileID: 7980534961155423035}
+  - component: {fileID: 5392610620260195207}
   m_Layer: 0
   m_Name: BossOne
   m_TagString: Untagged
@@ -244,3 +343,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5392610620260195207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7980534961155423036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c861c63f5085534d9b0ad9ccb469194, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

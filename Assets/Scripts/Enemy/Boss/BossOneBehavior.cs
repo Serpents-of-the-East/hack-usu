@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Health))]
 [RequireComponent(typeof(BoxCollider2D))]
@@ -151,10 +152,14 @@ public class BossOneBehavior : MonoBehaviour
         }
     }
 
+
     public void OnDeath()
     {
         transform.position = startPosition;
         Animator animator = GetComponentInChildren<Animator>();
         animator.SetBool("isDead", true);
+       
+
     }
+
 }

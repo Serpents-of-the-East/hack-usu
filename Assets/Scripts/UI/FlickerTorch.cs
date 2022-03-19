@@ -6,7 +6,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 public class FlickerTorch : MonoBehaviour
 {
 
-    public Light2D torch;
+    private Light2D torch;
     public float maxIntensity = 3;
     public int flickerRepeatLength = 5;
     public float flickerProbability = 0.4f;
@@ -15,6 +15,7 @@ public class FlickerTorch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        torch = GetComponent<Light2D>();
     }
 
     // Update is called once per frame
