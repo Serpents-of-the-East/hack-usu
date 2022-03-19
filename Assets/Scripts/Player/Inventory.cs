@@ -20,7 +20,7 @@ public class Inventory : MonoBehaviour
     {
         currentWeapon = primaryWeapon;
         shooting = GetComponent<Shooting>();
-        shooting.SetSpell(currentWeapon);
+        shooting.SetSpell(currentWeapon); 
     }
 
 
