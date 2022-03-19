@@ -9,6 +9,8 @@ public class Spell : MonoBehaviour
     public bool isPlayerSpell;
     public float lifeTime;
 
+    public float speedReductionPercentage = 0.5f;
+
     private CircleCollider2D circleCollider;
 
     // Start is called before the first frame update
@@ -33,7 +35,18 @@ public class Spell : MonoBehaviour
             Health health = other.GetComponent<Health>();
             if (health != null)
             {
-                health.TakeDamage(damage);
+                
+                if (gameObject.name == "FireBall(Clone)")
+                {
+                    health.TakeDamage(damage);
+                }
+                else
+                {
+                    WalkingEnemy enemy = other.GetComponent<WalkingEnemy>();
+                    enemy.speedMod = speedReductionPercentage;
+                    health.TakeDamage(damage);
+                }
+                
                 Animator animator = other.GetComponent<Animator>();
                 
                 if (animator != null && health.health > 0)

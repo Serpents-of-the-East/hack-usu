@@ -9,6 +9,16 @@ public class WalkingEnemy : MonoBehaviour
     public Animator animator;
     public float hitDistance = 2f;
 
+    public float speedMod = 1f;
+
+    private float originalSpeedMod;
+    public float slowTimer;
+
+    private void Start()
+    {
+        originalSpeedMod = speedMod;
+    }
+
     public void Die()
     {
         speed = 0f;
@@ -25,7 +35,19 @@ public class WalkingEnemy : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(-speed * Time.deltaTime, 0, 0);
+        transform.Translate(-speed * Time.deltaTime * speedMod, 0, 0);
+        if (speedMod != 1f)
+        {
+            StartCoroutine(SpeedReductionTimer());
+        }
+    }
+
+    IEnumerator SpeedReductionTimer() 
+    {
+        yield return new WaitForSeconds(slowTimer);
+        speedMod = originalSpeedMod;
+            
+        
     }
 
     public void OnCustomCollision(GameObject other)

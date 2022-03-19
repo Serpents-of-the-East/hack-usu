@@ -5,10 +5,13 @@ using UnityEngine.InputSystem;
 
 public class Shooting : MonoBehaviour
 {
-    [Header("Shooting Options")]
-    public GameObject spellPrefab;
+    [Header("Shooting Options")]    
+    public GameObject fireBall;
+    public GameObject iceBolt;
     public float roundsPerMinute;
     private float shotCoolDown;
+
+
 
     private bool isShooting;
     private float currentShotCooldown = 0;
@@ -25,6 +28,8 @@ public class Shooting : MonoBehaviour
     public float aimCursorDistance;
     public float deadzone = 0.1f;
 
+    private GameObject currentSpell;
+
     private void Awake()
     {
         shotCoolDown = 1 / (roundsPerMinute / 60f);
@@ -32,13 +37,23 @@ public class Shooting : MonoBehaviour
         aimCursor.transform.parent = transform;
 
         Cursor.lockState = CursorLockMode.Confined;
+
+        // TODO make it so this is changed by UI rather then right here
+        currentSpell = fireBall;
     }
+
+    
 
     // Update is called once per frame
     void Update()
     {
         HandleAim();
         HandleShot();
+    }
+
+    public void SetSpell(GameObject spell)
+    {
+        currentSpell = spell;
     }
 
     void OnLook(InputValue value)
@@ -85,13 +100,14 @@ public class Shooting : MonoBehaviour
         }
         if (isShooting && currentShotCooldown <= 0)
         {
-            GameObject bullet = Instantiate(spellPrefab);
-            bullet.transform.position = transform.position;
+            
+            GameObject spell = Instantiate(currentSpell);
+            spell.transform.position = transform.position;
 
             Vector2 lookDir = currLook;
             float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
 
-            bullet.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            spell.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
             currentShotCooldown = shotCoolDown;
         }
