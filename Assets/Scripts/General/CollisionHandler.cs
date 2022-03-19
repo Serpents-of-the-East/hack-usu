@@ -11,8 +11,12 @@ public class CollisionHandler : MonoBehaviour
     [System.Serializable]
     public class CollisionEvent : UnityEvent<GameObject> { }
 
+    [System.Serializable]
+    public class CollisionEventAdvanced : UnityEvent<Collider2D> { }
+
     [Header("Delegate Functions")]
     public CollisionEvent onCollisionFunctions;
+    public CollisionEventAdvanced onCollisionAdvancedFunctions;
 
     private enum ColliderType
     {
@@ -91,6 +95,7 @@ public class CollisionHandler : MonoBehaviour
             }
 
             onCollisionFunctions.Invoke(hit.gameObject);
+            onCollisionAdvancedFunctions.Invoke(hit);
         }
     }
 }
