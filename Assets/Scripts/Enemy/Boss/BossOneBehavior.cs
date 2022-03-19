@@ -35,12 +35,15 @@ public class BossOneBehavior : MonoBehaviour
     public AudioClip groundPound;
     private AudioSource audioSource;
 
+    private Vector3 startPosition;
+
     // Start is called before the first frame update
     void Start()
     {
         health = GetComponent<Health>();
         boxCollider = GetComponent<BoxCollider2D>();
         audioSource = GetComponent<AudioSource>();
+        startPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -150,6 +153,8 @@ public class BossOneBehavior : MonoBehaviour
 
     public void OnDeath()
     {
-        Destroy(gameObject);
+        transform.position = startPosition;
+        Animator animator = GetComponentInChildren<Animator>();
+        animator.SetBool("isDead", true);
     }
 }

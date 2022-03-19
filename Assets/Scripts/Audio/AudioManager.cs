@@ -19,6 +19,14 @@ public class AudioManager : MonoBehaviour
         audioSource.loop = true;
     }
 
+    private void Update()
+    {
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(isPlayingBossMusic ? bossFightMusic : defaultMusic);
+        }
+    }
+
     public void OnCustomCollision(GameObject other)
     {
         if (other.CompareTag("Boss Chamber") && !isPlayingBossMusic)
