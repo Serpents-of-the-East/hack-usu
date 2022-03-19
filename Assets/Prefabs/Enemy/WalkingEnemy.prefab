@@ -45,9 +45,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.95, y: 0}
+  m_Offset: {x: 1.8605717, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 1.9105717
 --- !u!114 &3514029810253141290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,6 +75,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onCollisionAdvancedFunctions:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3514029811040713040
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,10 +223,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3527895ba043a94faf4e12988c59abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 1
   damage: 2
   animator: {fileID: 3514029811040713046}
   hitDistance: 4
+  speedMod: 1
+  slowTimer: 0
 --- !u!95 &3514029811040713046
 Animator:
   serializedVersion: 3
