@@ -18,12 +18,13 @@ public class BatEnemy : WalkingEnemy
         if (distance > maxDistanceAway && distance < detectionRange)
         {
             gameObject.transform.Translate((player.transform.position - gameObject.transform.position) * Time.deltaTime * flyingSpeed);
+            if (canShoot)
+            {
+                Shoot();
+                StartCoroutine(ShotCooldown());
+            }
         }
-        if (canShoot)
-        {
-            Shoot();
-            StartCoroutine(ShotCooldown());
-        }
+
     }
 
     IEnumerator ShotCooldown()
