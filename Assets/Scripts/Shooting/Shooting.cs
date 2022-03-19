@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(AudioSource))]
 public class Shooting : MonoBehaviour
 {
     [Header("Shooting Options")]    
@@ -30,6 +31,9 @@ public class Shooting : MonoBehaviour
 
     private GameObject currentSpell;
 
+    public AudioClip fireSound;
+    private AudioSource audioSource;
+
     private void Awake()
     {
         shotCoolDown = 1 / (roundsPerMinute / 60f);
@@ -40,6 +44,7 @@ public class Shooting : MonoBehaviour
 
         // TODO make it so this is changed by UI rather then right here
         currentSpell = fireBall;
+        audioSource = GetComponent<AudioSource>();
     }
 
     
@@ -100,7 +105,7 @@ public class Shooting : MonoBehaviour
         }
         if (isShooting && currentShotCooldown <= 0)
         {
-            
+            audioSource.PlayOneShot(fireSound);
             GameObject spell = Instantiate(currentSpell);
             spell.transform.position = transform.position;
 
