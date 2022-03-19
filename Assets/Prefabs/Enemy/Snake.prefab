@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 2616754352891309135}
   - component: {fileID: 2119502988522795547}
   - component: {fileID: 5164756884277111688}
+  - component: {fileID: 621059285}
   m_Layer: 0
   m_Name: Tail
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,7 +151,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  immunityTime: 1
+  immunityTime: 0.1
 --- !u!114 &5164756884277111688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,6 +165,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snakeEntire: {fileID: 5564400110053611669}
+--- !u!61 &621059285
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200174731024183646}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &2732165137991848218
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,9 +204,10 @@ GameObject:
   - component: {fileID: 1167879552040135894}
   - component: {fileID: 163153984237254276}
   - component: {fileID: 4225810244391975762}
+  - component: {fileID: 184627777}
   m_Layer: 0
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -294,7 +322,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  immunityTime: 1
+  immunityTime: 0.1
 --- !u!114 &4225810244391975762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,6 +336,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snakeEntire: {fileID: 5564400110053611669}
+--- !u!61 &184627777
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2732165137991848218}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 0.32, y: 0.32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &3168467550783624720
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,9 +376,10 @@ GameObject:
   - component: {fileID: 4536263061195295351}
   - component: {fileID: 3482261392065442476}
   - component: {fileID: 3300333195698996948}
+  - component: {fileID: 995450985}
   m_Layer: 0
   m_Name: Tail
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -458,7 +513,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  immunityTime: 1
+  immunityTime: 0.1
 --- !u!114 &3300333195698996948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,6 +527,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snakeEntire: {fileID: 5564400110053611669}
+--- !u!61 &995450985
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3168467550783624720}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &5027074596329720208
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,9 +567,10 @@ GameObject:
   - component: {fileID: 7290238975434877483}
   - component: {fileID: 2334011924135642674}
   - component: {fileID: 8879332933194316267}
+  - component: {fileID: 821314301}
   m_Layer: 0
   m_Name: Tail
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -622,7 +704,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  immunityTime: 1
+  immunityTime: 0.1
 --- !u!114 &8879332933194316267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -636,6 +718,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snakeEntire: {fileID: 5564400110053611669}
+--- !u!61 &821314301
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5027074596329720208}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &5507576866011484882
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,9 +758,10 @@ GameObject:
   - component: {fileID: 2782568054291096794}
   - component: {fileID: 5287515367402018878}
   - component: {fileID: 922323674503861805}
+  - component: {fileID: 629227512}
   m_Layer: 0
   m_Name: Tail
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -786,7 +895,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  immunityTime: 1
+  immunityTime: 0.1
 --- !u!114 &922323674503861805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -800,6 +909,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snakeEntire: {fileID: 5564400110053611669}
+--- !u!61 &629227512
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5507576866011484882}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &5564400110053611669
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,7 +949,7 @@ GameObject:
   - component: {fileID: 1586471999864377508}
   m_Layer: 0
   m_Name: Snake
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -902,6 +1037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  deathAnimation: {fileID: 5450377422554565783, guid: 7213a7ea63bb71d4aa88c17a2635ddea, type: 3}
 --- !u!114 &1586471999864377508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -919,16 +1055,16 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 2829507829980420390}
+        m_TargetAssemblyTypeName: movingSnake, Assembly-CSharp
+        m_MethodName: Die
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  immunityTime: 1
+  immunityTime: 0.1
