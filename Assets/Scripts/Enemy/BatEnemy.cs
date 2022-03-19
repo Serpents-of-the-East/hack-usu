@@ -12,18 +12,21 @@ public class BatEnemy : WalkingEnemy
     private bool canShoot = true;
     public float detectionRange = 20f;
 
+    public GameObject deathAffect;
+
     protected override void Update()
     {
         float distance = (player.transform.position - gameObject.transform.position).magnitude;
         if (distance > maxDistanceAway && distance < detectionRange)
         {
             gameObject.transform.Translate((player.transform.position - gameObject.transform.position) * Time.deltaTime * flyingSpeed);
+            if (canShoot)
+            {
+                Shoot();
+                StartCoroutine(ShotCooldown());
+            }
         }
-        if (canShoot)
-        {
-            Shoot();
-            StartCoroutine(ShotCooldown());
-        }
+
     }
 
     IEnumerator ShotCooldown()
@@ -48,6 +51,15 @@ public class BatEnemy : WalkingEnemy
     {
 
         Gizmos.DrawWireSphere(transform.position, detectionRange);
+    }
+
+    protected override void DestroyObject()
+    {
+        GameObject obj = Instantiate(deathAffect);
+
+        obj.transform.position = transform.position;
+
+        Destroy(gameObject);
     }
 
 }

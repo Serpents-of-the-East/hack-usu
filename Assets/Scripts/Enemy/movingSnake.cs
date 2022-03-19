@@ -5,6 +5,7 @@ using UnityEngine;
 public class movingSnake : MonoBehaviour
 {
     public float speed;
+    public GameObject deathAnimation;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,4 +17,18 @@ public class movingSnake : MonoBehaviour
     {
         transform.Translate(new Vector2(speed * Time.deltaTime, 0));
     }
+
+    public void Die()
+    {
+        GameObject obj = Instantiate(deathAnimation);
+
+        obj.transform.position = transform.position;
+
+        Destroy(gameObject);
+
+        
+        
+    }
+
+
 }

@@ -1012,6 +1012,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "SimpleUI",
+            "id": "15623a2b-92da-4ac9-98a1-797dfd299e9a",
+            "actions": [
+                {
+                    "name": "Start",
+                    "type": "Button",
+                    "id": "ed47820e-3de2-4ab3-8351-5b716f917f24",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Quit",
+                    "type": "Button",
+                    "id": "b1b0efe8-af3f-41af-aeaf-9e10968552f4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4acd0e10-7cc2-4910-9406-733b90f9e829",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Start",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4f47494f-e5de-4cac-8af3-862a37b740f8",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Quit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

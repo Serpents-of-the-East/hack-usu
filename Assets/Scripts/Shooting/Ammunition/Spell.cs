@@ -18,6 +18,7 @@ public class Spell : MonoBehaviour
     {
         circleCollider = GetComponent<CircleCollider2D>();
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z + 90);
+        StartCoroutine(SelfDestruct());
     }
 
     // Update is called once per frame
@@ -35,7 +36,7 @@ public class Spell : MonoBehaviour
             Health health = other.GetComponent<Health>();
             if (health != null)
             {
-                Debug.Log("Got here");
+                
                 if (gameObject.tag == "Slow")
                 {
                     WalkingEnemy enemy = other.GetComponent<WalkingEnemy>();

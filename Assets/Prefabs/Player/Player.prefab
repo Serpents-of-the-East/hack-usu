@@ -117,17 +117,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9457ddf4b890a47b3f751325e4020a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 15
-  maxSpeedUpMultiplier: 2
+  baseSpeed: 5
+  maxSpeedUpMultiplier: 1.5
   minSlowDownMultiplier: 0.5
   walkAcceleration: 100
-  timePerJump: 2
-  maxJumpSpeed: 6
+  timePerJump: 0.5
+  maxJumpSpeed: 20
   jumpAcceleration: 5
-  initialJumpPercentage: 0
-  maxJumps: 2
+  initialJumpPercentage: 0.5
+  maxJumps: 1
   smokeEffect: {fileID: 2339269150336054531, guid: 16670df784a44824b92bc018c300e927, type: 3}
-  gravity: 9.81
+  gravity: 25
   maxFallSpeed: 20
   onCollisionFunctions:
     m_PersistentCalls:
@@ -158,6 +158,18 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BossOneBehavior, Assembly-CSharp
+        m_MethodName: OnCustomCollision
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: OnCustomCollision
         m_Mode: 0
         m_Arguments:
@@ -251,6 +263,7 @@ MonoBehaviour:
   aimCursor: {fileID: 0}
   aimCursorDistance: 3
   deadzone: 0.1
+  fireSound: {fileID: 8300000, guid: aad0c66f60e346240b85298ffe907b4f, type: 3}
 --- !u!114 &8582625215664183671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,4 +281,3 @@ MonoBehaviour:
   meleeWeapon: {fileID: 0}
   super: {fileID: 0}
   currency: 0
-  currentSpell: {fileID: 0}
