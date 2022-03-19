@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     public float minSlowDownMultiplier = 0.5f;
     public float walkAcceleration = 5f;
 
+    private bool hasFreeMovement = false;
+
     private Vector2 currentInput;
     private Vector2 currentVelocity;
 
@@ -37,11 +39,6 @@ public class PlayerMovement : MonoBehaviour
     private bool gravityIsDown = true;
     private bool canFlipGravity = true;
 
-    [Header("Debug")]
-
-    public bool debugMode = true;
-
-
     private CapsuleCollider2D capsuleCollider;
 
     [Header("Delegate Functions")]
@@ -58,30 +55,37 @@ public class PlayerMovement : MonoBehaviour
     {
         HandleMovement();
         HandleCollisions();
+
+        if (currentVelocity.x > 0)
+        {
+            gameObject.transform.localScale = new Vector3(1, 1, 1);
+        }
+        else if (currentVelocity.x < 0)
+        {
+            gameObject.transform.localScale = new Vector3(-1, 1, 1);
+        }
+        
     }
 
     void HandleMovement()
     {
         Vector2 horizontalVelocity = new Vector2(currentVelocity.x, 0);
 
-        if (debugMode)
-        {
-            horizontalVelocity = Vector2.MoveTowards(horizontalVelocity, baseSpeed * currentInput, walkAcceleration * Time.deltaTime);
 
-        }
-        else
-        {
-            horizontalVelocity = Vector2.MoveTowards(horizontalVelocity, baseSpeed * currentInput, walkAcceleration * Time.deltaTime);
-        }
 
-        if (horizontalVelocity.x < baseSpeed * minSlowDownMultiplier)
-        {
-            horizontalVelocity.x = baseSpeed * minSlowDownMultiplier;
-        }
+        horizontalVelocity = Vector2.MoveTowards(horizontalVelocity, baseSpeed * currentInput, walkAcceleration * Time.deltaTime);
 
-        if (horizontalVelocity.x > baseSpeed * maxSpeedUpMultiplier)
+        if (!hasFreeMovement)
         {
-            horizontalVelocity.x = baseSpeed * maxSpeedUpMultiplier;
+            if (horizontalVelocity.x < baseSpeed * minSlowDownMultiplier)
+            {
+                horizontalVelocity.x = baseSpeed * minSlowDownMultiplier;
+            }
+
+            if (horizontalVelocity.x > baseSpeed * maxSpeedUpMultiplier)
+            {
+                horizontalVelocity.x = baseSpeed * maxSpeedUpMultiplier;
+            }
         }
 
         currentVelocity.x = horizontalVelocity.x;
@@ -120,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
 
             ColliderDistance2D colliderDistance = hit.Distance(capsuleCollider);
 
-            if (colliderDistance.isOverlapped)
+            if (colliderDistance.isOverlapped && !hit.CompareTag("Boss Chamber"))
             {
                 transform.Translate(colliderDistance.pointA - colliderDistance.pointB);
             }
@@ -130,6 +134,11 @@ public class PlayerMovement : MonoBehaviour
                 currentJumps = maxJumps;
                 currentVelocity.y = 0;
                 canFlipGravity = true;
+            }
+
+            if (hit.CompareTag("Boss Chamber"))
+            {
+                hasFreeMovement = true;
             }
 
             onCollisionFunctions.Invoke(hit.gameObject);
