@@ -4,45 +4,33 @@ using UnityEngine;
 
 public class autoTargetting : MonoBehaviour
 {
-    public GameObject target;
-    public float speed;
-    public float delay;
-    private bool hasCalculatedTrajectory = false;
+    private GameObject target;
+    private Vector2 acceleration;
+    public float accelerationConstant;
+    private Vector2 velocity;
     public bool hasReachedTarget = false;
-    private Vector2 direction;
-    private Vector2 slope;
+    public float sightRange;
 
-    // Start is called before the first frame update
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player");
+        velocity = new Vector2();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (delay <= 0f && !hasCalculatedTrajectory)
+        if ((target.transform.position - transform.position).magnitude <= sightRange && !hasReachedTarget)
         {
-            slope = (target.transform.position - transform.position).normalized;
-            direction = slope;
-            hasCalculatedTrajectory = true;
+            acceleration = (target.transform.position - transform.position).normalized;
+            velocity = velocity + acceleration * accelerationConstant * Time.deltaTime;
+            transform.position = new Vector2(transform.position.x + velocity.x * Time.deltaTime, transform.position.y + velocity.y * Time.deltaTime);
 
+            if (transform.position.x > target.transform.position.x)
+            {
+                float rotation = Mathf.Rad2Deg * Mathf.Atan2(acceleration.y, acceleration.x);
+                transform.rotation = Quaternion.Euler(0, 180, 180 - rotation);
 
+            }
         }
-        else if (delay > 0f && !hasCalculatedTrajectory)
-        {
-            delay -= Time.deltaTime;
-        }
-        else if (!hasReachedTarget)
-        {
-            transform.position = new Vector3(transform.position.x + direction.x * speed * Time.deltaTime, transform.position.y + direction.y * speed * Time.deltaTime, 0);
-            float rotation = Mathf.Rad2Deg * Mathf.Atan2(slope.y, slope.x);
-            transform.rotation = Quaternion.Euler(0, 180, 180 - rotation);
-
-        }
-   
-
-
-
     }
 }

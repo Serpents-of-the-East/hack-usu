@@ -136,9 +136,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 15
+  accelerationConstant: 25
+  speed: 17
   delay: 1
   hasReachedTarget: 0
+  sightRange: 30
 --- !u!114 &1820450012
 MonoBehaviour:
   m_ObjectHideFlags: 0
