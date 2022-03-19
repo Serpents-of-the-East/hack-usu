@@ -42,7 +42,6 @@ public class Shooting : MonoBehaviour
         inventory = GetComponent<Inventory>();
 
         // TODO make it so this is changed by UI rather then right here
-        currentSpell = inventory.getCurrentWeapon();
         audioSource = GetComponent<AudioSource>();
     }
 
