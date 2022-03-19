@@ -24,13 +24,16 @@ public class PlayerMovement : MonoBehaviour
     [Header("Jumping Values")]
     public float timePerJump = 2;
     private float currentJumpTime;
-    public float maxJumpSpeed = 6f;
+    public float maxJumpSpeed = 20f;
+    public float jumpAcceleration = 5f;
+    public float initialJumpPercentage;
 
     private bool isJumping = false;
     private bool shouldJump = false;
 
     public int maxJumps = 2;
     private int currentJumps;
+    public ParticleSystem smokeEffect;
 
     [Header("Gravity Values")]
     public float gravity = 9.81f;
@@ -38,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool gravityIsDown = true;
     private bool canFlipGravity = true;
+    private bool onGround = false;
 
     private CapsuleCollider2D capsuleCollider;
 
@@ -97,13 +101,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (isJumping && shouldJump && currentJumps > 0)
         {
-            currentVelocity.y = maxJumpSpeed * (gravityIsDown ? 1 : -1);
+            currentVelocity.y = maxJumpSpeed * (!gravityIsDown ? -1 : 1) * initialJumpPercentage;
             shouldJump = false;
         }
         
         if (isJumping && currentJumpTime > 0)
         {
             currentJumpTime -= Time.deltaTime;
+            currentVelocity.y = Mathf.MoveTowards(currentVelocity.y, maxJumpSpeed * (gravityIsDown ? 1 : -1), jumpAcceleration * Time.deltaTime);
         }
         else
         {
@@ -138,9 +143,18 @@ public class PlayerMovement : MonoBehaviour
 
             if (hit.CompareTag("Environment"))
             {
-                currentJumps = maxJumps;
-                currentVelocity.y = 0;
-                canFlipGravity = true;
+                
+                if (colliderDistance.pointA.y > colliderDistance.pointB.y)
+                {
+                    if (!onGround)
+                    {
+                        CreateSmokeField(hit);
+                    }
+                    currentJumps = maxJumps;
+                    currentVelocity.y = 0;
+                    canFlipGravity = true;
+                    onGround = true;
+                }
             }
 
             if (hit.CompareTag("Boss Chamber"))
@@ -150,6 +164,12 @@ public class PlayerMovement : MonoBehaviour
 
             onCollisionFunctions.Invoke(hit.gameObject);
         }
+    }
+
+    private void CreateSmokeField(Collider2D other)
+    {
+        ParticleSystem obj = Instantiate(smokeEffect);
+        obj.transform.position = other.ClosestPoint(transform.position);
     }
 
     private void OnMove(InputValue value)
@@ -164,6 +184,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (canFlipGravity)
         {
+            onGround = false;
             if (direction < 0)
             {
                 gravityIsDown = true;
@@ -190,6 +211,7 @@ public class PlayerMovement : MonoBehaviour
             currentJumpTime = timePerJump;
             currentJumps--;
             shouldJump = true;
+            onGround = false;
         }
         else
         {
