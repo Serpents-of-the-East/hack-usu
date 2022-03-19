@@ -28,6 +28,7 @@ public class LoadSecondaryWeapon : MonoBehaviour
         if (spell == inventory.getCurrentWeapon())
         {
             imageContainer.color = new Color32(118, 255, 46, 123);
+            
         }
         else
         {
