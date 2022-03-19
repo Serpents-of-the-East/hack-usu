@@ -34,6 +34,12 @@ public class Spell : MonoBehaviour
             if (health != null)
             {
                 health.TakeDamage(damage);
+                Animator animator = other.GetComponent<Animator>();
+                
+                if (animator != null && health.health > 0)
+                {
+                    animator.SetBool("WasHurt", true);
+                }
             }
             else
             {

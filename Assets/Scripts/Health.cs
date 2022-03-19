@@ -32,6 +32,7 @@ public class Health : MonoBehaviour
         {
             StartCoroutine(ImmunityPhase());
             this.health -= healthAmount;
+
         }
         
     }
