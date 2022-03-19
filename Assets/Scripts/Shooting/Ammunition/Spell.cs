@@ -35,17 +35,14 @@ public class Spell : MonoBehaviour
             Health health = other.GetComponent<Health>();
             if (health != null)
             {
-                
-                if (gameObject.name == "FireBall(Clone)")
-                {
-                    health.TakeDamage(damage);
-                }
-                else
+                Debug.Log("Got here");
+                if (gameObject.tag == "Slow")
                 {
                     WalkingEnemy enemy = other.GetComponent<WalkingEnemy>();
                     enemy.speedMod = speedReductionPercentage;
-                    health.TakeDamage(damage);
                 }
+                health.TakeDamage(damage);
+                
                 
                 Animator animator = other.GetComponent<Animator>();
                 

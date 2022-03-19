@@ -5,12 +5,10 @@ using UnityEngine.InputSystem;
 
 public class Shooting : MonoBehaviour
 {
-    [Header("Shooting Options")]    
-    public GameObject fireBall;
-    public GameObject iceBolt;
+
     public float roundsPerMinute;
     private float shotCoolDown;
-
+    private Inventory inventory;
 
 
     private bool isShooting;
@@ -37,9 +35,10 @@ public class Shooting : MonoBehaviour
         aimCursor.transform.parent = transform;
 
         Cursor.lockState = CursorLockMode.Confined;
+        inventory = GetComponent<Inventory>();
 
         // TODO make it so this is changed by UI rather then right here
-        currentSpell = fireBall;
+        currentSpell = inventory.getCurrentWeapon();
     }
 
     

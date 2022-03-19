@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Boss Chamber
   - Destroyer
+  - Slow
   layers:
   - Default
   - TransparentFX

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4552692735589549797}
   - component: {fileID: 4552692735589549796}
   - component: {fileID: 3553700387230223027}
+  - component: {fileID: 8582625215664183671}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -122,6 +123,8 @@ MonoBehaviour:
   walkAcceleration: 100
   timePerJump: 2
   maxJumpSpeed: 6
+  jumpAcceleration: 5
+  initialJumpPercentage: 0
   maxJumps: 2
   smokeEffect: {fileID: 2339269150336054531, guid: 16670df784a44824b92bc018c300e927, type: 3}
   gravity: 9.81
@@ -244,9 +247,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d53792b226ed95b48b750afcedb06b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireBall: {fileID: 1307530766862259620, guid: f715bc4e31683664f9efc85ae6d94948, type: 3}
-  iceBolt: {fileID: 5511144339969884637, guid: 643dc8698931e44408e58b5df90a8afd, type: 3}
   roundsPerMinute: 120
   aimCursor: {fileID: 0}
   aimCursorDistance: 3
   deadzone: 0.1
+--- !u!114 &8582625215664183671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4552692735589549819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49dab8f9373b8614ea753d27e342e7ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primaryWeapon: {fileID: 1307530766862259620, guid: f715bc4e31683664f9efc85ae6d94948, type: 3}
+  secondaryWeapon: {fileID: 5511144339969884637, guid: 643dc8698931e44408e58b5df90a8afd, type: 3}
+  meleeWeapon: {fileID: 0}
+  super: {fileID: 0}
+  currency: 0
+  currentSpell: {fileID: 0}

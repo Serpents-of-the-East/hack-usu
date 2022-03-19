@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1820450015}
   m_Layer: 0
   m_Name: BomberBird
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135,10 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9be1a6be4c86a46b3413a7e86afc0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   accelerationConstant: 25
-  speed: 17
-  delay: 1
   hasReachedTarget: 0
   sightRange: 30
 --- !u!114 &1820450012

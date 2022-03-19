@@ -100,7 +100,7 @@ MonoBehaviour:
   damage: 2
   speed: 30
   isPlayerSpell: 1
-  lifeTime: 4
+  lifeTime: 0.5
   speedReductionPercentage: 0.5
 --- !u!114 &-6943236146497079477
 MonoBehaviour:
