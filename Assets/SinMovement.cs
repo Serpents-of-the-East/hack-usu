@@ -5,28 +5,25 @@ using UnityEngine;
 public class SinMovement : MonoBehaviour
 {
 
-    public Vector2 speed;
-
     public Vector2 currentVelocity;
+
+    public float amplitude;
 
     // Start is called before the first frame update
     void Start()
     {
         currentVelocity = new Vector2();
-        currentVelocity.x = speed.x;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float verticalVelocity = Mathf.Cos(Mathf.PI * Time.time);
+        float verticalPosition = Mathf.Cos(Mathf.PI * Time.time + transform.localPosition.x) * amplitude;
+
+        Vector2 currentlyFacing = new Vector2(Mathf.Abs(Mathf.Cos(Mathf.PI * Time.time + transform.localPosition.x)), Mathf.Sin(Mathf.PI * Time.time + transform.localPosition.x));
        /* float rotation = new Vector2();*/
 
-        currentVelocity.y = verticalVelocity;
-
-        currentVelocity.y *= speed.y;
-
-        transform.Translate(currentVelocity * Time.deltaTime);
-        transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, 0, 10f * Time.time));
+        transform.localPosition = new Vector3(transform.localPosition.x, verticalPosition, transform.localPosition.z);
+        transform.rotation = Quaternion.Euler(currentlyFacing);
     }
 }
