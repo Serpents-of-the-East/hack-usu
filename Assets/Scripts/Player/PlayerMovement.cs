@@ -80,12 +80,11 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 horizontalVelocity = new Vector2(currentVelocity.x, 0);
 
-
-
-        horizontalVelocity = Vector2.MoveTowards(horizontalVelocity, baseSpeed * currentInput, walkAcceleration * Time.deltaTime);
+        Vector2 otherSpeed = baseSpeed * currentInput;
 
         if (!hasFreeMovement)
         {
+            horizontalVelocity = Vector2.MoveTowards(horizontalVelocity, new Vector2(otherSpeed.x + baseSpeed, 0), walkAcceleration * Time.deltaTime);
             if (horizontalVelocity.x < baseSpeed * minSlowDownMultiplier)
             {
                 horizontalVelocity.x = baseSpeed * minSlowDownMultiplier;
@@ -95,6 +94,10 @@ public class PlayerMovement : MonoBehaviour
             {
                 horizontalVelocity.x = baseSpeed * maxSpeedUpMultiplier;
             }
+        }
+        else
+        {
+            horizontalVelocity = Vector2.MoveTowards(horizontalVelocity, new Vector2(otherSpeed.x * maxSpeedUpMultiplier, 0), walkAcceleration * Time.deltaTime);
         }
 
         currentVelocity.x = horizontalVelocity.x;
