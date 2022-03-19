@@ -33,4 +33,11 @@ public class autoTargetting : MonoBehaviour
             }
         }
     }
+    private void OnDrawGizmosSelected()
+    {
+
+        Gizmos.DrawWireSphere(transform.position, sightRange);
+    }
+
+
 }
