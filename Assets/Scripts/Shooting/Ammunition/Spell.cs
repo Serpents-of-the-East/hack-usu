@@ -6,56 +6,41 @@ public class Spell : MonoBehaviour
 {
     public int damage;
     public float speed;
-    public bool isPlayerBullet;
+    public bool isPlayerSpell;
     public float lifeTime;
 
     private CircleCollider2D circleCollider;
-    
 
     // Start is called before the first frame update
     void Start()
     {
         circleCollider = GetComponent<CircleCollider2D>();
-
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z + 90);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += transform.up * speed * Time.deltaTime;
-        CheckCollisions();
+        transform.position += transform.right * speed * Time.deltaTime;
+
+
     }
 
-    private void CheckCollisions()
+    public void OnCustomCollision(GameObject other)
     {
-        if (!isPlayerBullet)
+        if (other.CompareTag("Enemy") && isPlayerSpell)
         {
-            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, circleCollider.radius, LayerMask.GetMask("Player"));
-            foreach (Collider2D hit in hits)
+            Health health = other.GetComponent<Health>();
+            if (health != null)
             {
-                if (hit == circleCollider)
-                    continue;
-
-                Debug.Log("Bullet hit player");
-                // Do something when player gets hit
-                Destroy(gameObject);
-
+                health.TakeDamage(damage);
             }
-        }
-        else // this is enemy bullet
-        {
-            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, circleCollider.radius, LayerMask.GetMask("Enemy"));
-            foreach (Collider2D hit in hits)
+            else
             {
-                if (hit == circleCollider)
-                    continue;
-
-                // Do something when enemy gets hit
-                Destroy(gameObject);
-
-
-
+                Debug.LogError($"Found enemy {other.name} which was marked as enemy, but missing a health component");
             }
+            
+            Destroy(gameObject);
         }
     }
 

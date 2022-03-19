@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 2931569233104279418}
   - component: {fileID: 5582852444278521734}
   - component: {fileID: 6228086321830512883}
+  - component: {fileID: -6943236146497079477}
   - component: {fileID: -951760843370660204}
   m_Layer: 0
   m_Name: FireBall
-  m_TagString: Untagged
+  m_TagString: Spell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,10 +97,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aea1998051835a458af88537ec99c47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 2
   speed: 15
-  isPlayerBullet: 1
+  isPlayerSpell: 1
   lifeTime: 4
+--- !u!114 &-6943236146497079477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307530766862259620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dad41f66a3289444e81f2647a6a19c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onCollisionFunctions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6228086321830512883}
+        m_TargetAssemblyTypeName: Spell, Assembly-CSharp
+        m_MethodName: OnCustomCollision
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!58 &-951760843370660204
 CircleCollider2D:
   m_ObjectHideFlags: 0

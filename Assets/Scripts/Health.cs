@@ -5,10 +5,20 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
-    public int health { get ; private set; }
-    public int maxHealth { get ; private set; }
-    public UnityEvent onDeath { get; private set; }
+    public int health;
+    public int maxHealth;
+    public UnityEvent onDeath;
     private bool deathHandled = false;
+
+    public float immunityTime = 1f;
+    private bool canTakeDamage = true;
+
+    private IEnumerator ImmunityPhase()
+    {
+        canTakeDamage = false;
+        yield return new WaitForSeconds(immunityTime);
+        canTakeDamage = true;
+    }
 
 
     public void ModifyHealth(int healthAmount)
@@ -18,7 +28,12 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int healthAmount)
     {
-        this.health -= healthAmount;
+        if (canTakeDamage)
+        {
+            StartCoroutine(ImmunityPhase());
+            this.health -= healthAmount;
+        }
+        
     }
 
     public void Heal(int healthAmount)
@@ -39,8 +54,10 @@ public class Health : MonoBehaviour
 
         if (health <= 0 && !deathHandled)
         {
-            onDeath.Invoke();
             deathHandled = true;
+            onDeath.Invoke();
         }
     }
+
+    
 }

@@ -54,7 +54,6 @@ public class Shooting : MonoBehaviour
 
 
         currLook = lookDelta;
-        Debug.Log(currLook);
         
     }
     void HandleAim()
@@ -70,6 +69,8 @@ public class Shooting : MonoBehaviour
         {
             currLook = currentMouseAimDirection;
         }
+
+        
 
         mouseAimLastDirection = currentMouseAimDirection;
 
