@@ -34,6 +34,9 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = 9.81f;
     public float maxFallSpeed = 10f;
 
+    private bool gravityIsDown = true;
+    private bool canFlipGravity = true;
+
     [Header("Debug")]
 
     public bool debugMode = true;
@@ -85,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (isJumping && shouldJump && currentJumps > 0)
         {
-            currentVelocity.y = maxJumpSpeed;
+            currentVelocity.y = maxJumpSpeed * (gravityIsDown ? 1 : -1);
             shouldJump = false;
         }
         
@@ -95,10 +98,10 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            currentVelocity.y -= Time.deltaTime * gravity;
-            if (currentVelocity.y < -maxFallSpeed)
+            currentVelocity.y -= Time.deltaTime * gravity * (gravityIsDown ? 1 : -1);
+            if (Mathf.Abs(currentVelocity.y) > maxFallSpeed)
             {
-                currentVelocity.y = -maxFallSpeed;
+                currentVelocity.y = maxFallSpeed * (gravityIsDown ? -1 : 1);
             }
         }
 
@@ -126,6 +129,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 currentJumps = maxJumps;
                 currentVelocity.y = 0;
+                canFlipGravity = true;
             }
 
             onCollisionFunctions.Invoke(hit.gameObject);
@@ -136,6 +140,28 @@ public class PlayerMovement : MonoBehaviour
     {
         currentInput = value.Get<Vector2>();
         currentInput.y = 0;
+    }
+
+    private void OnGravityFlip(InputValue value)
+    {
+        float direction = value.Get<float>();
+
+        if (canFlipGravity)
+        {
+            if (direction < 0)
+            {
+                gravityIsDown = true;
+                canFlipGravity = false;
+                currentVelocity.y = -maxFallSpeed;
+            }
+            else if (direction > 0)
+            {
+                gravityIsDown = false;
+                canFlipGravity = false;
+                currentVelocity.y = maxFallSpeed;
+
+            }
+        }
     }
 
     private void OnJump(InputValue value)
