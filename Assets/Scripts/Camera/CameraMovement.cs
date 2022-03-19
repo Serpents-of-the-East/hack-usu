@@ -11,6 +11,7 @@ public class CameraMovement : MonoBehaviour
 
     public float cameraHorizontalOffset;
     private Camera m_camera;
+    private bool isMovingToCenter;
 
     [Header("Boss Chamber")]
     public Transform bossChamberCameraPosition;
@@ -18,13 +19,51 @@ public class CameraMovement : MonoBehaviour
     public float bossChamberFOV;
     public float fovChangeSpeed;
     private bool inBossChamber = false;
-    
+
+    [Header("Camera Shake")]
+    public float firstShakeAmplitude;
+    public float maxShakeAmplitude = 2;
+    public float shakeDuration;
+    private bool canShake = true;
 
 
     void Start()
     {
         m_camera = GetComponent<Camera>();
     }
+
+    public void ShakeCamera(GameObject other)
+    {
+        if (other.tag == "Environment" && canShake)
+        {
+            StartCoroutine(ShakethThyCamera());
+        }
+    }
+
+    private IEnumerator ShakethThyCamera()
+    {
+        canShake = false;
+        Vector3 originalPosition = transform.position;
+
+        float elapsedTime = 0f;
+        while (elapsedTime < shakeDuration)
+        {
+            float xOffset = Random.Range(-0.5f, 0.5f) * firstShakeAmplitude;
+            float yOffset = Random.Range(-0.5f, 0.5f) * firstShakeAmplitude;
+
+            transform.position = new Vector3(originalPosition.x + xOffset, originalPosition.y + yOffset, originalPosition.z);
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        transform.position = originalPosition;
+
+        firstShakeAmplitude = maxShakeAmplitude;
+
+        canShake = true;
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -35,8 +74,17 @@ public class CameraMovement : MonoBehaviour
         }
         else
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(bossChamberCameraPosition.position.x, bossChamberCameraPosition.position.y, transform.position.z), speedToBossChamber * Time.deltaTime);
+            if (isMovingToCenter)
+            {
+                transform.position = Vector3.Lerp(transform.position, new Vector3(bossChamberCameraPosition.position.x, bossChamberCameraPosition.position.y, transform.position.z), speedToBossChamber * Time.deltaTime);
+                if (Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(bossChamberCameraPosition.position.x, bossChamberCameraPosition.position.y)) < 0.05)
+                {
+                    Debug.Log("Camera Has finished");
+                    isMovingToCenter = false;
+                }
+            }
             m_camera.orthographicSize = Mathf.MoveTowards(m_camera.orthographicSize, bossChamberFOV, fovChangeSpeed * Time.deltaTime);
+
         }
     }
 
@@ -44,6 +92,10 @@ public class CameraMovement : MonoBehaviour
     {
         if (other.CompareTag("Boss Chamber"))
         {
+            if (!inBossChamber)
+            {
+                isMovingToCenter = true;
+            }
             inBossChamber = true;
         }
     }
