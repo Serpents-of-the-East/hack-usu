@@ -26,7 +26,7 @@ public class WalkingEnemy : MonoBehaviour
         
     }
 
-    public void DestroyObject()
+    protected virtual void DestroyObject()
     {
         Destroy(gameObject);
     }
