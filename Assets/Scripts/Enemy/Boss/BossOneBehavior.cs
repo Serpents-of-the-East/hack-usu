@@ -51,6 +51,11 @@ public class BossOneBehavior : MonoBehaviour
 
         velocity.y -= gravity * Time.deltaTime;
 
+        if (health.health < health.maxHealth / 2)
+        {
+            maxTimeBeforeJump /= 2;
+            minTimeBeforeJump /= 2;
+        }
 
         transform.Translate(velocity * Time.deltaTime);
     }
@@ -130,5 +135,10 @@ public class BossOneBehavior : MonoBehaviour
         {
             isActive = true;
         }
+    }
+
+    public void OnDeath()
+    {
+        Destroy(gameObject);
     }
 }

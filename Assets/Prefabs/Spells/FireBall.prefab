@@ -98,9 +98,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 2
-  speed: 15
+  speed: 30
   isPlayerSpell: 1
   lifeTime: 4
+  speedReductionPercentage: 0.5
 --- !u!114 &-6943236146497079477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +129,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onCollisionAdvancedFunctions:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!58 &-951760843370660204
 CircleCollider2D:
   m_ObjectHideFlags: 0

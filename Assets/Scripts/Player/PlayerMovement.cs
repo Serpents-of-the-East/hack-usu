@@ -45,12 +45,14 @@ public class PlayerMovement : MonoBehaviour
     public CollisionEvent onCollisionFunctions;
 
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         capsuleCollider = GetComponent<CapsuleCollider2D>();
         animator = GetComponent<Animator>();
         currentJumps = maxJumps;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -61,11 +63,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (currentVelocity.x > 0)
         {
-            gameObject.transform.localScale = new Vector3(1, gameObject.transform.localScale.y, 1);
+            spriteRenderer.flipX = false;
         }
         else if (currentVelocity.x < 0)
         {
-            gameObject.transform.localScale = new Vector3(-1, gameObject.transform.localScale.y, 1);
+            spriteRenderer.flipX = true;
         }
         
     }
@@ -129,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
 
             ColliderDistance2D colliderDistance = hit.Distance(capsuleCollider);
 
-            if (colliderDistance.isOverlapped && !hit.CompareTag("Boss Chamber") && !hit.CompareTag("Enemy"))
+            if (colliderDistance.isOverlapped && hit.CompareTag("Environment"))
             {
                 transform.Translate(colliderDistance.pointA - colliderDistance.pointB);
             }
@@ -167,14 +169,14 @@ public class PlayerMovement : MonoBehaviour
                 gravityIsDown = true;
                 canFlipGravity = false;
                 currentVelocity.y = -maxFallSpeed;
-                gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, 1, gameObject.transform.localScale.z);
+                spriteRenderer.flipY = false;
             }
             else if (direction > 0)
             {
                 gravityIsDown = false;
                 canFlipGravity = false;
                 currentVelocity.y = maxFallSpeed;
-                gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, -1, gameObject.transform.localScale.z);
+                spriteRenderer.flipY = true;
 
             }
         }
